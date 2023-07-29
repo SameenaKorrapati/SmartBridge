@@ -1,0 +1,77 @@
+.topnav {
+    background-color: #FFFB0D;
+    overflow: hidden;
+}
+
+.topnav a {
+    float: left;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.topnav a:hover {
+    /* background-color: #FFFFFF; */
+    color: #FFFFFF;
+}
+
+.topnav a.active {
+    background-color: #FFFB0D;
+    color: white;
+}
+.about{
+    padding-top: 25px;
+    margin-right: 70px;
+    float: right;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.doc-editor{
+    .background{
+        opacity:0.2;
+        position: absolute;
+        left: 0%;
+        top: 0%;
+        width: 100%;
+        height: auto;
+    }
+}
+.toolbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    text-align: center;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: #E6E202;
+    font-size: x-large;
+    font-weight: 1200;
+  }
+
+  .editor-content {
+    display: flex;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 700;
+  }
+
+  .box {
+    flex: 3;
+    font-size: large;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .toolbar button {
+    padding: 5px 10px;
+    margin: 0 5px;
+    border: none;
+    background-color: #f1f1f1;
+    cursor: pointer;
+  }
+  img.logo {
+    border: 1px solid black;
+    height: 40%;
+    cursor: pointer;
+  }
