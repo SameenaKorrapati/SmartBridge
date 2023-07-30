@@ -1,0 +1,77 @@
+
+/* header{
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: #E6E202;
+    overflow: hidden;
+    font-weight: 1200;
+    #mainBoxFull{font-size: 0;}
+} */
+.topbar{
+background-color: rgba(253,253,150, 0.4);
+}
+img.logo{
+float: left;
+}
+#editable-heading{
+float: left;
+padding-top: 2px;
+padding-left: 2px;
+font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+font-weight: lighter;
+}
+#editor {
+height: 10000px; 
+}
+/* .Buttons{
+    padding-top: 50px;
+    margin-right: 70px;
+    float: right;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+.Buttons a {
+    float: left;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.Buttons a:hover {
+    /* background-color: #FFFFFF; */
+    /* color: #FFFFFF;
+}
+
+.Buttons a.active {
+    background-color: #FFFB0D;
+    color: white;
+} */
+.topnav {
+    background-color: #FFFB0D;
+    overflow: hidden;
+}
+
+.topnav a {
+    float: left;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.topnav a:hover {
+    /* background-color: #FFFFFF; */
+    color: #FFFFFF;
+}
+
+.topnav a.active {
+    background-color: #FFFB0D;
+    color: white;
+}
+.Buttons{
+    padding-top: 25px;
+    margin-right: 30px;
+    float: right;
+    /* font-family:Verdana, Geneva, Tahoma, sans-serif; */
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 2000;
+}

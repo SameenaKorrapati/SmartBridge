@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Untitled Document</title>
+    <!-- Add Quill's CSS -->
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <link rel="stylesheet" href="stylestexteditor.css">
+</head>
+<body>
+    <!-- <div class="topbar">
+    <header>
+        <a href="Home.html"><img class="logo" src="logo.jpg" alt="Home" width="150px" height="91px"></a>
+        <span><h1 contenteditable="true" id="editable-heading">Untitled Document</h1></span>
+        <span><a href="#" class="Buttons">Summarize</a></span>
+        <span><a href="#" class="Buttons">Check Redundancy</a></span>
+        <span><a href="#" class="Buttons">Check Grammar</a></span>
+        <span><a href="#" class="Buttons">Links</a></span>
+        <script src="script.js"></script>
+    </header>
+    </div> -->
+
+    <div class="topnav">
+        <a class="active" href="#home"><img src="logo.jpg" alt="Home" width="130px" height="75px"></a>
+        <span><h1 contenteditable="true" id="editable-heading">Untitled Document</h1></span>
+        <div class="Buttons">
+        <a href="#" class="Buttons">Summarize</a>
+        <a href="#" class="Buttons">Check Redundancy</a>
+        <a href="#" class="Buttons">Check Grammar</a>
+        <a href="#" class="Buttons">Links</a>
+        </div>
+    </div>
+    <br><br><br>
+
+    <div id="editor">
+        
+    </div>
+
+    <!-- Add Quill's JavaScript -->
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="client.js"></script>
+</body>
+<script>
+    // Initialize Quill editor
+    var quill = new Quill('#editor', {
+        theme: 'snow', 
+
+        
+        modules: {
+            toolbar: [
+                [{ 'header': [1, 2, false] }], // Headers
+                [{ 'font': [] }],
+                ['bold', 'italic', 'underline', 'strike'], // Bold, italic, underline, and strike-through
+                [{ 'list': 'ordered'}, { 'list': 'bullet' }], // Lists
+                [{ 'script': 'sub'}, { 'script': 'super' }], // Subscript and superscript
+                ['link', 'image', 'video'], // Links, images, and videos
+                [{ 'color': [] }, { 'background': [] }], // Text and background color
+                [{ 'align': [] }],
+                ['clean'] // Remove formatting
+            ]
+        },
+        placeholder: 'Type Here...',
+    });
+</script>
+<script>
+    
+    var previousContent = quill.root.innerHTML;
+
+    
+    quill.on('text-change', function() {
+        var currentContent = quill.root.innerHTML;
+        // Check if content has changed
+        if (previousContent !== currentContent) {
+            // Save the updated content to your server or perform other actions
+            console.log('Content changed:', currentContent);
+            previousContent = currentContent;
+        }
+    });
+</script>
+</html>
