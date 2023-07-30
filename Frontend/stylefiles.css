@@ -26,17 +26,25 @@
     float: right;
     font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
-
-.doc-editor{
-    .background{
-        opacity:0.2;
-        position: absolute;
-        left: 0%;
-        top: 0%;
-        width: 100%;
-        height: auto;
-    }
-}
+/* body
+{
+    position: relative;
+    background: url("yelllow-zig-zag.png") repeat ; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+} */
+/* #background-image{
+    background-image: url("yelllow-zig-zag.png");
+    background-repeat: repeat;
+    opacity:0.2;
+    position: absolute;
+    left: 0%;
+    top: 0%;
+    width: 100%;
+    height: 500px;
+} */
 .toolbar {
     display: flex;
     justify-content: center;
@@ -48,6 +56,15 @@
     font-size: x-large;
     font-weight: 1200;
   }
+
+  .background{
+    opacity:0.2;
+    position: absolute;
+    left: 0%;
+    top: 0%;
+    width: 100%;
+    height: auto;
+}
 
   .editor-content {
     display: flex;
@@ -74,4 +91,10 @@
     border: 1px solid black;
     height: 40%;
     cursor: pointer;
+  }
+  body {
+    background-image: url('yelllow-zig-zag.png');
+    background-repeat: repeat;
+    background-color: rgba(255, 255, 255, 0.5); 
+    background-size: contain;
   }
