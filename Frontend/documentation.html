@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Text Converter</title>
+</head>
+<body>
+
+<div>
+  <label for="inputTextArea">Enter your text:</label><br>
+  <textarea id="inputTextArea" rows="10" cols="50" placeholder="Enter your text here..."></textarea><br>
+  <button onclick="convertAndDisplay()">Convert Text</button>
+</div>
+
+<div id="outputDiv"></div>
+
+<script>
+function convertTextToHTML(inputText) {
+  let outputHTML = '';
+  let isInBold = false;
+  let isInHeading = false;
+  let isInBullet = false;
+  let isInUnderline = false;
+  let currentColor = null;
+
+  const lines = inputText.split('\n');
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i].trim();
+
+    if (line.startsWith("\\color")) {
+      const colorRegex = /\\color \((.*?)\)/;
+      const colorMatch = line.match(colorRegex);
+      if (colorMatch) {
+        const colorname = colorMatch[1].trim();
+        if (currentColor) {
+          outputHTML += `</span>`; // Close the previous color block if it was open
+        }
+        currentColor = colorname;
+        outputHTML += `<span style="color: ${colorname};">`; // Open a new color block
+        const startIndex = line.indexOf(")");
+        outputHTML += line.substring(startIndex + 1).trim();
+        outputHTML += '<br>';
+      }
+    } else if (line.startsWith("\\*color")) {
+      if (currentColor) {
+        outputHTML += `</span>`; // Close the color block
+        currentColor = null;
+      }
+      outputHTML += line.substr(7).trim(); // Append text after "\\*color"
+      outputHTML += '<br>'; // Add line breaks after each processed line
+    } else if (line.startsWith("\\Bold")) {
+      if (!isInBold) {
+        isInBold = true;
+        outputHTML += '<b>';
+      }
+
+      outputHTML += line.substr(6).trim(); // Append text after "\\Bold"
+      outputHTML += '<br>'; // Add line breaks inside bold block
+    } else if (line.startsWith("\\*Bold")) {
+      if (isInBold) {
+        isInBold = false;
+        outputHTML += '</b>';
+      }
+
+      outputHTML += line.substr(7).trim(); // Append text after "\\*Bold"
+      outputHTML += '<br>'; // Add line breaks after each processed line
+    } else if (line.startsWith("\\heading")) {
+      if (!isInHeading) {
+        isInHeading = true;
+        outputHTML += '<h2>';
+      }
+
+      outputHTML += line.substr(8).trim(); // Append text after "\\heading"
+      outputHTML += '<br>'; // Add line breaks inside heading block
+    } else if (line.startsWith("\\*heading")) {
+      if (isInHeading) {
+        isInHeading = false;
+        outputHTML += '</h2>';
+      }
+
+      outputHTML += line.substr(9).trim(); // Append text after "\\*heading"
+      outputHTML += '<br>'; // Add line breaks after each processed line
+    } else if (line.startsWith("\\bullet")) {
+      if (!isInBullet) {
+        isInBullet = true;
+        outputHTML += '<ul>';
+      }
+
+      // Append text after "\\bullet"
+      outputHTML += `<li>${line.substr(7).trim()}</li>`;
+    } else if (line.startsWith("\\*bullet")) {
+      if (isInBullet) {
+        isInBullet = false;
+        outputHTML += '</ul>';
+      }
+
+      outputHTML += line.substr(8).trim(); // Append text after "\\*bullet"
+      outputHTML += '<br>'; // Add line breaks after each processed line
+    } else if (line.startsWith("\\underline")) {
+      if (!isInUnderline) {
+        isInUnderline = true;
+        outputHTML += '<u>';
+      }
+
+      outputHTML += line.substr(10).trim(); // Append text after "\\underline"
+      outputHTML += '<br>'; // Add line breaks inside underline block
+    } else if (line.startsWith("\\*underline")) {
+      if (isInUnderline) {
+        isInUnderline = false;
+        outputHTML += '</u>';
+      }
+
+      outputHTML += line.substr(11).trim(); // Append text after "\\*underline"
+      outputHTML += '<br>'; // Add line breaks after each processed line
+    } else {
+      if (isInBold) {
+        outputHTML += '<b>';
+      }
+
+      if (isInHeading) {
+        outputHTML += '<h2>';
+      }
+
+      if (isInBullet) {
+        outputHTML += '<li>'; // Add bullet point to each line inside bullet block
+      }
+
+      if (isInUnderline) {
+        outputHTML += '<u>'; // Add underline to each line inside underline block
+      }
+
+      outputHTML += line; // Regular line, add as is
+      outputHTML += '<br>'; // Add line breaks after each processed line
+    }
+  }
+
+  if (isInBold) {
+    outputHTML += '</b>'; // Close the bold block if it was open till the end
+  }
+
+  if (isInHeading) {
+    outputHTML += '</h2>'; // Close the heading block if it was open till the end
+  }
+
+  if (isInBullet) {
+    outputHTML += '</ul>'; // Close the bullet block if it was open till the end
+  }
+
+  if (isInUnderline) {
+    outputHTML += '</u>'; // Close the underline block if it was open till the end
+  }
+
+  if (currentColor) {
+    outputHTML += `</span>`; // Close the color block if it was open till the end
+  }
+
+  return outputHTML;
+}
+
+function convertAndDisplay() {
+  const inputText = document.getElementById("inputTextArea").value;
+  const convertedHTML = convertTextToHTML(inputText);
+  document.getElementById("outputDiv").innerHTML = convertedHTML;
+}
+</script>
+
+</body>
+</html>
