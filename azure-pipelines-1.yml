@@ -19,10 +19,9 @@ steps:
   displayName: 'Run a multi-line script'
 - task: Bash@3
   inputs:
-    script: 
+    script: |
       # Get the commit ID of the previous build
       previousCommit=$(Build.SourceVersion)
-
       # Get the commit ID of the current build
       currentCommit=$(Build.SourceVersion)
 
